@@ -139,6 +139,14 @@
                                     @csrf
                                 </form>
                             </div>
+                            &nbsp;
+                            <div class="header__top__right__auth">
+                                @can('ingresar_dashboard')
+                                    <a href="{{ route('dashboard.home') }}">
+                                        Dashboard
+                                    </a>
+                                @endcan
+                            </div>
                         @endguest
                     </div>
                 </div>

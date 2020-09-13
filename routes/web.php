@@ -21,6 +21,17 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::middleware('auth')->group(function () {
+    Route::prefix('dashboard')->group(function () {
+        Route::name('dashboard.')->group(function () {
+            Route::get('home', 'HomeController@home')->name('home')
+                ->middleware('permission:ingresar_dashboard');
+
+        });
+    });
+
+    /*TODO: Otras rutas*/
+});
 
 
 
