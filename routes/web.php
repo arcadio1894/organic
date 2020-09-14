@@ -27,6 +27,13 @@ Route::middleware('auth')->group(function () {
             Route::get('home', 'HomeController@home')->name('home')
                 ->middleware('permission:ingresar_dashboard');
 
+            Route::get('departamentos', 'DepartmentController@index')->name('department.index')
+                ->middleware('permission:listar_departamento');
+            Route::get('departamento/crear', 'DepartmentController@create')->name('department.create')
+                ->middleware('permission:crear_departamento');
+            Route::post('department/store', 'DepartmentController@store')->name('department.store')
+                ->middleware('permission:crear_departamento');
+
         });
     });
 

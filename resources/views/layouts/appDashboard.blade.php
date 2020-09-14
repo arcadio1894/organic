@@ -3,6 +3,9 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>Dashboard - Organic</title>
 
     <meta name="description" content="" />
@@ -160,11 +163,11 @@
                 <b class="arrow"></b>
 
                 <ul class="submenu">
-                    @can('modificar_departamento')
+                    @can('listar_departamento')
                     <li class=" @yield('activeListDepartmento') ">
-                        <a href="#">
+                        <a href="{{ route('dashboard.department.index') }}">
                             <i class="menu-icon fa fa-caret-right"></i>
-                            Modificar departamentos
+                            Listar departamentos
                         </a>
 
                         <b class="arrow"></b>
@@ -173,7 +176,7 @@
                     @endcan
                     @can('crear_departamento')
                     <li class=" @yield('activeCreateDepartamento') ">
-                        <a href="#">
+                        <a href="{{ route('dashboard.department.create') }}">
                             <i class="menu-icon fa fa-caret-right"></i>
                             Crear Departamento
                         </a>
