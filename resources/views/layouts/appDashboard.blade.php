@@ -184,6 +184,16 @@
                         <b class="arrow"></b>
                     </li>
                     @endcan
+                    @can('restaurar_departamento')
+                        <li class=" @yield('activeRestoreDepartamento') ">
+                            <a href="{{ route('dashboard.department.trashed') }}">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Restaurar Departamentos
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                    @endcan
 
                 </ul>
             </li>

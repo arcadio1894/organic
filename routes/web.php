@@ -33,6 +33,16 @@ Route::middleware('auth')->group(function () {
                 ->middleware('permission:crear_departamento');
             Route::post('department/store', 'DepartmentController@store')->name('department.store')
                 ->middleware('permission:crear_departamento');
+            Route::get('departamento/{id}/editar', 'DepartmentController@edit')->name('department.edit')
+                ->middleware('permission:modificar_departamento');
+            Route::post('department/update', 'DepartmentController@update')->name('department.update')
+                ->middleware('permission:modificar_departamento');
+            Route::post('department/destroy', 'DepartmentController@destroy')->name('department.destroy')
+                ->middleware('permission:eliminar_departamento');
+            Route::get('departamento/restaurar', 'DepartmentController@trashed')->name('department.trashed')
+                ->middleware('permission:modificar_departamento');
+            Route::post('department/restore', 'DepartmentController@restore')->name('department.restore')
+                ->middleware('permission:restaurar_departamento');
 
         });
     });
