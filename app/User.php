@@ -24,4 +24,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // TODO: Ejemplo de relacion de 1 a muchos
+    public function customer()
+    {
+        return $this->hasMany('App\Customer');
+    }
+
 }
