@@ -152,7 +152,7 @@
             {{-- Administrador --}}
             <li class=" @yield('openModDepartamento') ">
                 <a href="#" class="dropdown-toggle">
-                    <i class="menu-icon fa fa-users"></i>
+                    <i class="menu-icon fa fa-archive"></i>
                     <span class="menu-text">
                         M. Departamentos
                     </span>
@@ -189,6 +189,44 @@
                             <a href="{{ route('dashboard.department.trashed') }}">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 Restaurar Departamentos
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                    @endcan
+
+                </ul>
+            </li>
+
+            <li class=" @yield('openModProducto') ">
+                <a href="#" class="dropdown-toggle">
+                    <i class="menu-icon fa fa-cart-plus"></i>
+                    <span class="menu-text">
+                        M. Productos
+                    </span>
+
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+
+                <b class="arrow"></b>
+
+                <ul class="submenu">
+                    @can('gestionar_productos')
+                        <li class=" @yield('activeListProducto') ">
+                            <a href="{{ route('dashboard.product.index') }}">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Listar productos
+                            </a>
+
+                            <b class="arrow"></b>
+
+                        </li>
+                    @endcan
+                    @can('gestionar_productos')
+                        <li class=" @yield('activeRestoreProducto') ">
+                            <a href="{{ route('dashboard.product.trashed') }}">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Restaurar Productos
                             </a>
 
                             <b class="arrow"></b>

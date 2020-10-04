@@ -45,6 +45,10 @@ Route::middleware('auth')->group(function () {
             Route::post('department/restore', 'DepartmentController@restore')->name('department.restore')
                 ->middleware('permission:restaurar_departamento');
 
+            Route::get('productos', 'ProductController@index')->name('product.index')
+                ->middleware('permission:gestionar_productos');
+            Route::get('productos/restaurar', 'ProductController@trashed')->name('product.trashed')
+                ->middleware('permission:gestionar_productos');
         });
     });
 
