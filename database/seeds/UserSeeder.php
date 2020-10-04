@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use App\Customer;
 
 class UserSeeder extends Seeder
 {
@@ -24,6 +25,11 @@ class UserSeeder extends Seeder
             'email' => 'usuario@organic.com',
             'dni'   => '11111111',
             'password' => bcrypt('11111111'),
+        ]);
+        $customerU = Customer::create([
+            'name' => $userU->name,
+            'phone' => '985645874',
+            'user_id' => $userU->id
         ]);
         $userU->assignRole('user');
         $userC = User::create([
