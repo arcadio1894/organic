@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Department;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,9 +24,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $departments = Department::all();
+        return view('home', compact('departments'));
     }
 
+    /**
+    Este home es el administrador
+     */
     public function home()
     {
         return view('dashboard.home');

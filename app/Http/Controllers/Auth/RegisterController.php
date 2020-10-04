@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Address;
+use App\Customer;
+use App\Department;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
@@ -54,6 +57,11 @@ class RegisterController extends Controller
             'dni' => ['required', 'string', 'digits:8'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'phone' => ['regex:/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{3})/'],
+            'address' => ['required', 'string', 'min:4'],
+            'postcode' => ['required', 'string'],
+            'city' => ['required', 'string'],
+            'country' => ['required', 'string'],
         ]);
     }
 
@@ -65,11 +73,35 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+         $user = User::create([
             'name' => $data['name'],
             'dni' => $data['dni'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+         ]);
+
+        $user->assignRole('user');
+
+        $customer = Customer::create([
+            'name' => $data['name'],
+            'phone' => $data['phone'],
+            'user_id' => $user->id,
         ]);
+
+        $address = Address::create([
+            'postcode' => $data['postcode'],
+            'address' => $data['address'],
+            'city' => $data['city'],
+            'country' => $data['country'],
+            'customer_id' => $customer->id,
+        ]);
+
+        return $user;
+    }
+
+    public function showRegistrationForm()
+    {
+        $departments = Department::all();
+        return view('auth.register', compact('departments'));
     }
 }

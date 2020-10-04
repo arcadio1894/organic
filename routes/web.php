@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $departments = \App\Department::all();
+    return view('welcome', compact('departments'));
 });
 
 Auth::routes();

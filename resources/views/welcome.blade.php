@@ -7,7 +7,7 @@
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Organic</title>
+    <title>Organic Shop</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
@@ -137,23 +137,14 @@
                                     @csrf
                                 </form>
                             </div>
-                            {{--<li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                            &nbsp;
+                            &nbsp;
+                            <div class="header__top__right__auth">
+                                <a href="{{ route('home') }}">
+                                    <i class="fa fa-user"></i>
+                                    Mi cuenta
                                 </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Cerrar Sesión') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>--}}
+                            </div>
                         @endguest
                     </div>
                 </div>
@@ -164,7 +155,7 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="header__logo">
-                    <a href="./index.html"><img src="{{ asset('organic/img/logo.png') }}" alt=""></a>
+                    <a href="{{ url('/') }}"><img src="{{ asset('organic/img/logo.png') }}" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-6">
@@ -212,20 +203,12 @@
                 <div class="hero__categories">
                     <div class="hero__categories__all">
                         <i class="fa fa-bars"></i>
-                        <span>All departments</span>
+                        <span>Los departamentos</span>
                     </div>
                     <ul>
-                        <li><a href="#">Fresh Meat</a></li>
-                        <li><a href="#">Vegetables</a></li>
-                        <li><a href="#">Fruit & Nut Gifts</a></li>
-                        <li><a href="#">Fresh Berries</a></li>
-                        <li><a href="#">Ocean Foods</a></li>
-                        <li><a href="#">Butter & Eggs</a></li>
-                        <li><a href="#">Fastfood</a></li>
-                        <li><a href="#">Fresh Onion</a></li>
-                        <li><a href="#">Papayaya & Crisps</a></li>
-                        <li><a href="#">Oatmeal</a></li>
-                        <li><a href="#">Fresh Bananas</a></li>
+                        @foreach( $departments as $department )
+                        <li><a href="#">{{ $department->name }}</a></li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -234,7 +217,7 @@
                     <div class="hero__search__form">
                         <form action="#">
                             <div class="hero__search__categories">
-                                All Categories
+                                Los departamentos
                                 <span class="arrow_carrot-down"></span>
                             </div>
                             <input type="text" placeholder="What do yo u need?">
@@ -269,31 +252,18 @@
 <section class="categories">
     <div class="container">
         <div class="row">
-            <div class="categories__slider owl-carousel">
-                <div class="col-lg-3">
-                    <div class="categories__item set-bg" data-setbg="{{ asset('organic/img/categories/cat-1.jpg') }}">
-                        <h5><a href="#">Fresh Fruit</a></h5>
-                    </div>
+            <div class="col-lg-12">
+                <div class="section-title ceb">
+                    <h2>Departamentos</h2>
                 </div>
-                <div class="col-lg-3">
-                    <div class="categories__item set-bg" data-setbg="{{ asset('organic/img/categories/cat-2.jpg') }}">
-                        <h5><a href="#">Dried Fruit</a></h5>
+                <div class="categories__slider owl-carousel">
+                    @foreach( $departments as $department )
+                    <div class="col-lg-3">
+                        <div class="categories__item set-bg" data-setbg="{{ asset('images/departments/'.$department->image) }}">
+                            <h5><a href="#">{{ $department->name }}</a></h5>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="categories__item set-bg" data-setbg="{{ asset('organic/img/categories/cat-3.jpg') }}">
-                        <h5><a href="#">Vegetables</a></h5>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="categories__item set-bg" data-setbg="{{ asset('organic/img/categories/cat-4.jpg') }}">
-                        <h5><a href="#">drink fruits</a></h5>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="categories__item set-bg" data-setbg="{{ asset('organic/img/categories/cat-5.jpg') }}">
-                        <h5><a href="#">drink fruits</a></h5>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

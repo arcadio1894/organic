@@ -8,9 +8,9 @@
                     <div class="breadcrumb__text">
                         <h2>Bienvenido</h2>
                         <div class="breadcrumb__option">
-                            <a href="./index.html">Inicio</a>
-                            <a href="./index.html">Bienvenido</a>
-                            <span>Vegetable’s Package</span>
+                            <a href="{{ route('home') }}">Inicio</a>
+                            <a href="#">Bienvenido</a>
+                            <span>A tu cuenta personal</span>
                         </div>
                     </div>
                 </div>
@@ -20,23 +20,21 @@
 @endsection
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+<!-- Categories Section Begin -->
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
+<div class="col-lg-12">
+    <div class="section-title">
+        <h2>Departamentos</h2>
+    </div>
+    <div class="categories__slider owl-carousel">
+        @foreach( $departments as $department )
+            <div class="col-lg-3">
+                <div class="categories__item set-bg" data-setbg="{{ asset('images/departments/'.$department->image) }}">
+                    <h5><a href="#">{{ $department->name }}</a></h5>
                 </div>
             </div>
-        </div>
+        @endforeach
     </div>
 </div>
+<!-- Categories Section End -->
 @endsection
