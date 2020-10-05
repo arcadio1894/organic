@@ -49,6 +49,8 @@ Route::middleware('auth')->group(function () {
                 ->middleware('permission:gestionar_productos');
             Route::get('productos/restaurar', 'ProductController@trashed')->name('product.trashed')
                 ->middleware('permission:gestionar_productos');
+            Route::post('product/store', 'ProductController@store')->name('product.store')
+                ->middleware('permission:gestionar_productos');
         });
     });
 

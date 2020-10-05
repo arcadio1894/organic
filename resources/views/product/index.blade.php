@@ -129,12 +129,86 @@
                     </div>
 
                 </div>
-                <form id="formCreate" data-url="#">
+                <form id="formCreate" class="form-horizontal" data-url="{{ route('dashboard.product.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="name"> Producto </label>
 
+                            <div class="col-sm-9">
+                                <input type="text" id="name" name="name" placeholder="Producto" class="col-xs-10 col-sm-10" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="descriptionShort"> Descripción corta </label>
+
+                            <div class="col-sm-9">
+                                <textarea name="descriptionShort" id="descriptionShort" cols="30" rows="4" class="col-xs-10 col-sm-10"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="descriptionLarge"> Descripción larga </label>
+
+                            <div class="col-sm-9">
+                                <textarea name="descriptionLarge" id="descriptionLarge" cols="30" rows="4" class="col-xs-10 col-sm-10"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="unitsInStock"> Unidades en Stock </label>
+
+                            <div class="col-sm-9">
+                                <input type="number" min="0" class="col-xs-10 col-sm-10" name="unitsInStock" id="unitsInStock">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="unitPrice"> Precio Unitario </label>
+
+                            <div class="col-sm-9">
+                                <input type="text" class="col-xs-10 col-sm-10" name="unitPrice" id="unitPrice">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="unitPrice"> Imagen (540x560) </label>
+
+                            <div class="col-sm-9">
+                                <input type="file" accept="image/jpeg,image/png" name="image" id="image" class="col-xs-10 col-sm-10">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="stars"> Calificación </label>
+
+                            <div class="col-sm-9">
+                                <input type="number" class="col-xs-10 col-sm-10" min="0" max="5" name="stars" id="stars" value="0">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="weight"> Presentación </label>
+
+                            <div class="col-sm-9">
+                                <input type="text" class="col-xs-10 col-sm-10" name="weight" id="weight" >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="department_id"> Presentación </label>
+
+                            <div class="col-sm-9">
+                                <select name="department_id" id="department_id" class="col-xs-10 col-sm-10">
+                                    @foreach( $departments as $department )
+                                        <option value="{{ $department->id }}">{{$department->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer center">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                         <button type="submit" class="btn btn-success">Guardar</button>
                     </div>

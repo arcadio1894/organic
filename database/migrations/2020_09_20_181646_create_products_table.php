@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
             $table->decimal('unitPrice',6, 2);
             $table->string('image')->nullable();
             $table->integer('stars')->nullable();
-            $table->decimal('weight', 6, 2);
+            $table->string('weight');
             $table->unsignedBigInteger('department_id');
             $table->foreign('department_id')
                 ->references('id')->on('departments');

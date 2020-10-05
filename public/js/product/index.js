@@ -17,13 +17,12 @@ var $formCreate;
 var $modalCrear;
 
 function openModalCrear() {
-    // Llenar el combo de departamentos
     $modalCrear.modal('show');
 }
 
 function storeProduct() {
     event.preventDefault();
-    var createUrl = $formDelete.data('url');
+    var createUrl = $formCreate.data('url');
     $.ajax({
         url: createUrl,
         method: 'POST',
@@ -31,45 +30,44 @@ function storeProduct() {
         processData: false,
         contentType: false,
         success: function (data) {
-            if (data != "") {
-                console.log(data);
-                for (var property in data){
-                    $.toast({
-                        text : data[property],
-                        showHideTransition : 'slide',
-                        bgColor : '#D15B47',
-                        textColor : '#eee',
-                        allowToastClose : false,
-                        hideAfter : 4000,
-                        stack : 10,
-                        textAlign : 'left',
-                        position : 'top-right',
-                        icon: 'error',
-                        heading: 'Error'
-                    });
-                }
-            } else {
+            console.log(data);
+            $.toast({
+                text : 'Producto creado correctamente.',
+                showHideTransition : 'slide',
+                bgColor : '#629B58',
+                textColor : '#eee',
+                allowToastClose : false,
+                hideAfter : 4000,
+                stack : 10,
+                textAlign : 'left',
+                position : 'top-right',
+                icon: 'success',
+                heading: 'Éxito'
+            });
+            $modalEliminar.modal('hide');
+            setTimeout(function () {
+                location.reload();
+            }, 4000)
+
+        },
+        error: function (data) {
+            console.log(data);
+            for (var property in data.responseJSON.errors){
                 $.toast({
-                    text : 'Producto eliminado correctamente.',
+                    text : data.responseJSON.errors[property],
                     showHideTransition : 'slide',
-                    bgColor : '#629B58',
+                    bgColor : '#D15B47',
                     textColor : '#eee',
                     allowToastClose : false,
                     hideAfter : 4000,
                     stack : 10,
                     textAlign : 'left',
                     position : 'top-right',
-                    icon: 'success',
-                    heading: 'Éxito'
+                    icon: 'error',
+                    heading: 'Error'
                 });
-                $modalEliminar.modal('hide');
-                setTimeout(function () {
-                    location.reload();
-                }, 4000)
             }
-        },
-        error: function (data) {
-            console.log(data)
+
         }
     });
 }
