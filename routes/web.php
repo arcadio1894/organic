@@ -55,7 +55,15 @@ Route::middleware('auth')->group(function () {
     });
 
     /*TODO: Otras rutas*/
+
 });
+
+/** Rutas de la tienda  */
+Route::name('tienda.')->group(function () {
+    Route::get('categorias', 'DepartmentController@showCategories')->name('categories')
+        ->middleware('onlyUser');
+});
+
 
 
 

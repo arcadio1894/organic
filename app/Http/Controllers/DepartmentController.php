@@ -162,4 +162,11 @@ class DepartmentController extends Controller
 
         return response()->json($validator->messages(),200);
     }
+
+    public function showCategories()
+    {
+        $departments = Department::all();
+
+        return view('landing.categories', compact('departments'));
+    }
 }
