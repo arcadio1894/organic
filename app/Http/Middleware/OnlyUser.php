@@ -15,9 +15,13 @@ class OnlyUser
      */
     public function handle($request, Closure $next)
     {
-        if ($request->user()->hasRole('creator')) {
-            return redirect('/');
+        if ($request->user())
+        {
+            if ($request->user()->hasRole('creator')) {
+                return redirect('/');
+            }
         }
+
         return $next($request);
     }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
 
-class StoreProduct extends FormRequest
+class UpdateProduct extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,6 +25,7 @@ class StoreProduct extends FormRequest
     public function rules()
     {
         return [
+            'product_id'        => 'required|exists:products,id',
             'name'              => 'required|string|min:5',
             'descriptionShort'  => 'max:255',
             'descriptionLarge'  => 'max:255',
@@ -40,6 +41,8 @@ class StoreProduct extends FormRequest
     public function messages()
     {
         return [
+            'product_id.required'       => 'Es necesario enviar el producto',
+            'product_id.exists'         => 'No existe el producto seleccionado',
             'name.required'             => 'Ingrese el nombre del producto.',
             'name.string'               => 'El nombre del producto debe contener caracteres válidos',
             'name.min'                  => 'El nombre del producto es muy corto',
