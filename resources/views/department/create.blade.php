@@ -39,7 +39,7 @@
         </h1>
     </div><!-- /.page-header -->
     <div class="col-md-8 col-md-offset-2">
-        <form id="formCreate" class="form-horizontal" method="POST" data-url="{{ route('dashboard.department.store') }}">
+        <form id="formCreate" class="form-horizontal" method="POST" data-url="{{ route('dashboard.department.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="name"> Departamento </label>
@@ -56,6 +56,16 @@
 
                 <div class="col-sm-9">
                     <textarea name="description" id="description" cols="30" rows="10"></textarea>
+                </div>
+            </div>
+
+            <div class="space-4"></div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="description"> Imagen (270px x 270px) </label>
+
+                <div class="col-sm-9">
+                    <input type="file" name="image" id="image">
                 </div>
             </div>
 

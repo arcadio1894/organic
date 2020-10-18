@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\Facades\Image;
 
 class DepartmentController extends Controller
 {
@@ -25,7 +26,8 @@ class DepartmentController extends Controller
     {
         $rules = [
             'name' => 'required|string|min:4|unique:departments,name',
-            'description' => 'string|max:256'
+            'description' => 'string|max:256',
+            'image' => 'image'
         ];
 
         $messages = [
@@ -34,7 +36,8 @@ class DepartmentController extends Controller
             'name.min' => 'El nombre es demasiado corto.',
             'name.unique' => 'Este nombre ya está usado.',
             'description.string' => 'La descripción contiene caracteres no válidos.',
-            'description.max' => 'La descripción es demasiado larga.'
+            'description.max' => 'La descripción es demasiado larga.',
+            'image.image' => 'El tipo de archivo es incorrecto.'
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -45,6 +48,28 @@ class DepartmentController extends Controller
                 'name' => $request->get('name'),
                 'description' => $request->get('description'),
             ]);
+
+            if(!$request->file('image')){
+                $department->image = 'not-found.jpg';
+            } else {
+                // TODO: Tratamiento de la imagen con Intervention Image
+                $img = Image::make($request->file('image'));
+                $img->resize(270,270);
+                $watermark = Image::make(public_path().'/images/watermark.png')->resize(270,270);
+
+                $img->insert($watermark);
+
+                $path = public_path().'/images/departments/';
+                $extension = $request->file('image')->getClientOriginalExtension();
+                $filename = $department->id . '.' . $extension;
+
+                $img->save($path.$filename, 60);
+
+                $department->image = $filename;
+                $department->save();
+            }
+
+
         }
 
         return response()->json($validator->messages(),200);
@@ -67,7 +92,8 @@ class DepartmentController extends Controller
         $rules = [
             'department_id' => 'required|exists:departments,id',
             'name' => 'required|string|min:4',
-            'description' => 'string|max:256'
+            'description' => 'string|max:256',
+            'image' => 'image'
         ];
 
         $messages = [
@@ -77,7 +103,8 @@ class DepartmentController extends Controller
             'name.string' => 'El nombre contiene caracteres inválidos.',
             'name.min' => 'El nombre es demasiado corto.',
             'description.string' => 'La descripción contiene caracteres no válidos.',
-            'description.max' => 'La descripción es demasiado larga.'
+            'description.max' => 'La descripción es demasiado larga.',
+            'image.image' => 'El tipo de archivo es incorrecto.',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -104,6 +131,25 @@ class DepartmentController extends Controller
             $department->name = $request->get('name');
             $department->description = $request->get('description');
             $department->save();
+
+            if($request->file('image'))
+            {
+                // TODO: Tratamiento de la imagen con Intervention Image
+                $img = Image::make($request->file('image'));
+                $img->resize(270,270);
+                $watermark = Image::make(public_path().'/images/watermark.png')->resize(270,270);
+
+                $img->insert($watermark);
+
+                $path = public_path().'/images/departments/';
+                $extension = $request->file('image')->getClientOriginalExtension();
+                $filename = $department->id . '.' . $extension;
+
+                $img->save($path.$filename, 60);
+
+                $department->image = $filename;
+                $department->save();
+            }
         }
 
         return response()->json($validator->messages(),200);
