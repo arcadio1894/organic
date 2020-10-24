@@ -114,5 +114,11 @@ class DepartmentSeeder extends Seeder
             'image' => '17.jpg'
         ]);
 
+        Department::create([
+            'name' => 'Lácteos y Huevos',
+            'description' => 'Departamento de Lacteos y Huevos',
+            'image' => '18.jpg'
+        ]);
+
     }
 }
