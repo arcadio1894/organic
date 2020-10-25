@@ -66,8 +66,14 @@ Route::middleware('auth')->group(function () {
 
 /** Rutas de la tienda  */
 Route::name('tienda.')->group(function () {
+    // TODO: Esto se usó en la clase de middlewares
     Route::get('categorias', 'DepartmentController@showCategories')->name('categories')
         ->middleware('onlyUser');
+
+    Route::get('tienda', 'StoreController@shop')->name('organic');
+
+    Route::get('products/shop', 'StoreController@getProducts');
+
 });
 
 

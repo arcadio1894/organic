@@ -61,18 +61,11 @@
     </div>
     <nav class="humberger__menu__nav mobile-menu">
         <ul>
-            <li class="active"><a href="./index.html">Home</a></li>
-            <li><a href="{{ route('tienda.categories') }}">Departamentos</a></li>
-            <li><a href="#">Pages</a>
-                <ul class="header__menu__dropdown">
-                    <li><a href="./shop-details.html">Shop Details</a></li>
-                    <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                    <li><a href="./checkout.html">Check Out</a></li>
-                    <li><a href="./blog-details.html">Blog Details</a></li>
-                </ul>
-            </li>
-            <li><a href="./blog.html">Blog</a></li>
-            <li><a href="./contact.html">Contact</a></li>
+            <li class="@yield('activeInicio')"><a href="{{ url('/') }}">Inicio</a></li>
+            {{--<li><a href="{{ route('tienda.categories') }}">Departamentos</a></li>--}}
+            <li class="@yield('activeTienda')"><a href="{{ route('tienda.organic') }}">Tienda</a></li>
+            <li class="@yield('activePedidos')"><a href="#">Pedidos</a></li>
+            <li class="@yield('activeContacto')"><a href="#">Contacto</a></li>
         </ul>
     </nav>
     <div id="mobile-menu-wrap"></div>
@@ -114,7 +107,7 @@
                         </div>
                         @guest
                             <div class="header__top__right__auth">
-                                <a href="{{ route('register') }}"><i class="fa fa-user"></i> Register</a>
+                                <a href="{{ route('register') }}"><i class="fa fa-plus"></i> Register</a>
                             </div>
                             &nbsp;
                             &nbsp;
@@ -163,18 +156,11 @@
             <div class="col-lg-6">
                 <nav class="header__menu">
                     <ul>
-                        <li class="active"><a href="{{ url('/') }}">Tienda</a></li>
-                        <li><a href="{{ route('tienda.categories') }}">Departamentos</a></li>
-                        <li><a href="#">Pages</a>
-                            <ul class="header__menu__dropdown">
-                                <li><a href="./shop-details.html">Shop Details</a></li>
-                                <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                <li><a href="./checkout.html">Check Out</a></li>
-                                <li><a href="./blog-details.html">Blog Details</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="./blog.html">Blog</a></li>
-                        <li><a href="./contact.html">Contact</a></li>
+                        <li class="@yield('activeInicio')"><a href="{{ url('/') }}">Inicio</a></li>
+                        {{--<li><a href="{{ route('tienda.categories') }}">Departamentos</a></li>--}}
+                        <li class="@yield('activeTienda')"><a href="{{ route('tienda.organic') }}">Tienda</a></li>
+                        <li class="@yield('activePedidos')"><a href="#">Pedidos</a></li>
+                        <li class="@yield('activeContacto')"><a href="#">Contacto</a></li>
                     </ul>
                 </nav>
             </div>
@@ -328,6 +314,7 @@
 <!-- Footer Section End -->
 
 <!-- Js Plugins -->
+
 <script src="{{ asset('organic/js/jquery-3.3.1.min.js') }}"></script>
 <script src="{{ asset('organic/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('organic/js/jquery.nice-select.min.js') }}"></script>
@@ -335,9 +322,10 @@
 <script src="{{ asset('organic/js/jquery.slicknav.js') }}"></script>
 <script src="{{ asset('organic/js/mixitup.min.js') }}"></script>
 <script src="{{ asset('organic/js/owl.carousel.min.js') }}"></script>
+@yield('scripts')
 <script src="{{ asset('organic/js/main.js') }}"></script>
 
-@yield('scripts')
+
 
 </body>
 
