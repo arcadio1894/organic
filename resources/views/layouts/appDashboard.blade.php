@@ -236,6 +236,15 @@
                 </ul>
             </li>
 
+            <li class=" @yield('activeModExports') ">
+                <a href="{{ route('exports') }}">
+                    <i class="menu-icon fa fa-file-pdf-o"></i>
+                    <span class="menu-text">
+                        Exportaciones
+                    </span>
+                </a>
+            </li>
+
 
         </ul><!-- /.nav-list -->
 

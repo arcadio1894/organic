@@ -61,6 +61,19 @@ Route::middleware('auth')->group(function () {
     });
 
     /*TODO: Otras rutas*/
+    Route::get('exportaciones', 'ExportController@exports')->name('exports')
+        ->middleware('permission:listar_departamento');
+    Route::get('export/pdf', 'ExportController@exportPDF')->name('export.pdf')
+        ->middleware('permission:listar_departamento');
+    Route::get('export2/pdf', 'ExportController@export2PDF')->name('export2.pdf')
+        ->middleware('permission:listar_departamento');
+    Route::get('export3/pdf', 'ExportController@export3PDF')->name('export3.pdf')
+        ->middleware('permission:listar_departamento');
+    Route::get('export4/pdf', 'ExportController@export4PDF')->name('export4.pdf')
+        ->middleware('permission:listar_departamento');
+
+    Route::get('export/departments/pdf', 'ExportController@exportDepartments')->name('export.departments.pdf')
+        ->middleware('permission:listar_departamento');
 
 });
 
