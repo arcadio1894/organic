@@ -3,8 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Department;
+use App\Exports\ArrayExport;
+use App\Exports\DeparmentExport;
+use App\Exports\ExportableExport;
+use App\Exports\UsersExport;
+use App\User;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ExportController extends Controller
 {
@@ -50,4 +56,51 @@ class ExportController extends Controller
         $pdf = PDF::LoadHTML($view);
         return $pdf->stream();
     }
+
+    public function exportUsersExcel()
+    {
+        return Excel::download(new UsersExport, 'users.xlsx');
+    }
+
+    public function exportArrayExcel()
+    {
+        //return Excel::download(new ArrayExport, 'array.xlsx');
+
+        $header = ['ID', 'Nombre', 'Email'];
+        $content = [];
+        $users = User::all();
+        foreach ( $users as $user )
+        {
+            array_push($content, [$user->id, $user->name, $user->email]);
+        }
+
+        return Excel::download(new ArrayExport([$header,$content]), 'usersArray.xlsx');
+    }
+
+    public function storeArrayExcel()
+    {
+        $header = ['ID', 'Nombre', 'Email'];
+        $content = [];
+        $users = User::all();
+        foreach ( $users as $user )
+        {
+            array_push($content, [$user->id, $user->name, $user->email]);
+        }
+
+        //return Excel::store(new ArrayExport([$header,$content]), 'users.xlsx', 'excel');
+        return Excel::store(new ArrayExport([$header,$content]), 'users.xlsx');
+
+    }
+
+    public function exportableExcel()
+    {
+        return (new ExportableExport)->download('exportable.xlsx');
+    }
+
+    public function exportDepartmentsExcel()
+    {
+        return (new DeparmentExport)->download('exportable.xlsx');
+    }
+
+
 }

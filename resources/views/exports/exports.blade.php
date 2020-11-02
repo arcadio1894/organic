@@ -41,6 +41,22 @@ active
         <a href="{{ route('export3.pdf') }}" class="btn btn-xlg btn-warning"> Download HTML->PDF </a>
         <a href="{{ route('export4.pdf') }}" target="_blank" class="btn btn-xlg btn-default"> Stream File->PDF </a>
         <a href="{{ route('export.departments.pdf') }}" target="_blank" class="btn btn-xlg btn-purple"> Stream View->PDF </a>
+        <a href="{{ route('export.users.excel') }}" class="btn btn-xlg btn-purple">
+            <i class="ace-icon fa fa-file-excel-o"></i> Exports Collection User
+        </a>
+        <a href="{{ route('export.array.excel') }}" class="btn btn-xlg btn-yellow">
+            <i class="ace-icon fa fa-file-excel-o"></i> Exports Array
+        </a>
+        <a href="{{ route('store.array.excel') }}" class="btn btn-xlg btn-danger">
+            <i class="ace-icon fa fa-file-excel-o"></i> Store Array
+        </a>
+        <a href="{{ route('exportable.excel') }}" class="btn btn-xlg btn-info2">
+            <i class="ace-icon fa fa-file-excel-o"></i> Exportable excel
+        </a>
+        <a href="{{ route('export.department.excel') }}" class="btn btn-xlg btn-pink">
+            <i class="ace-icon fa fa-file-excel-o"></i> Export Departments
+        </a>
+
     </div>
 @endsection
 

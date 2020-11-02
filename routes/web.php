@@ -60,7 +60,7 @@ Route::middleware('auth')->group(function () {
         });
     });
 
-    /*TODO: Otras rutas*/
+    /*TODO: Rutas del PDF*/
     Route::get('exportaciones', 'ExportController@exports')->name('exports')
         ->middleware('permission:listar_departamento');
     Route::get('export/pdf', 'ExportController@exportPDF')->name('export.pdf')
@@ -73,6 +73,19 @@ Route::middleware('auth')->group(function () {
         ->middleware('permission:listar_departamento');
 
     Route::get('export/departments/pdf', 'ExportController@exportDepartments')->name('export.departments.pdf')
+        ->middleware('permission:listar_departamento');
+
+    // TODO: Rutas de Excel
+    Route::get('export/users/excel', 'ExportController@exportUsersExcel')->name('export.users.excel')
+        ->middleware('permission:listar_departamento');
+    Route::get('export/array/excel', 'ExportController@exportArrayExcel')->name('export.array.excel')
+        ->middleware('permission:listar_departamento');
+    Route::get('store/array/excel', 'ExportController@storeArrayExcel')->name('store.array.excel')
+        ->middleware('permission:listar_departamento');
+    Route::get('exportable/excel', 'ExportController@exportableExcel')->name('exportable.excel')
+        ->middleware('permission:listar_departamento');
+
+    Route::get('export/department/excel', 'ExportController@exportDepartmentsExcel')->name('export.department.excel')
         ->middleware('permission:listar_departamento');
 
 });
