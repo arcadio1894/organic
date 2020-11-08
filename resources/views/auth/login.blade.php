@@ -97,6 +97,20 @@
                                 </a>
                             </div>
                         </div>
+                        <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <a href="{{ route('social.auth', 'linkedin') }}" class="btn btn-info">
+                                    <i class="fa fa-linkedin"></i> {{ __('Linkedin') }}
+                                </a>
+                            </div>
+                        </div>
+                        <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <a href="{{ route('social.auth', 'linkedin') }}" class="btn btn-primary">
+                                    <i class="fa fa-facebook"></i> {{ __('Facebook') }}
+                                </a>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
