@@ -83,6 +83,20 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <a href="{{ route('social.auth', 'github') }}" class="btn btn-success">
+                                    <i class="fa fa-github"></i> {{ __('GitHub') }}
+                                </a>
+                            </div>
+                        </div>
+                        <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <a href="{{ route('social.auth', 'google') }}" class="btn btn-danger">
+                                    <i class="fa fa-google"></i> {{ __('Google') }}
+                                </a>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

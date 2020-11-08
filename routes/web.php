@@ -102,7 +102,10 @@ Route::name('tienda.')->group(function () {
 
 });
 
-
+/** Rutas de Autenticacion por redes sociales*/
+Route::get('auth/{provider}', 'Auth\SocialAuthController@redirectToProvider')
+    ->name('social.auth');
+Route::get('auth/{provider}/callback', 'Auth\SocialAuthController@handleProviderCallback');
 
 
 
