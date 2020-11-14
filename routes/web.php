@@ -107,8 +107,10 @@ Route::get('auth/{provider}', 'Auth\SocialAuthController@redirectToProvider')
     ->name('social.auth');
 Route::get('auth/{provider}/callback', 'Auth\SocialAuthController@handleProviderCallback');
 
-
-
+/** Rutas de HandlerController*/
+/*Route::get('404', 'HandlerController@error404')->name('404');
+Route::get('405', 'HandlerController@error405')->name('405');
+Route::get('403', 'HandlerController@error403')->name('403');*/
 
 
 
