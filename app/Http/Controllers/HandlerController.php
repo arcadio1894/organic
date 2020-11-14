@@ -20,4 +20,9 @@ class HandlerController extends Controller
     {
         return view('errors.403');
     }
+
+    public function error302()
+    {
+        return view('errors.403');
+    }
 }
