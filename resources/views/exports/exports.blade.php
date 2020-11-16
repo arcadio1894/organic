@@ -57,6 +57,12 @@ active
             <i class="ace-icon fa fa-file-excel-o"></i> Export Departments
         </a>
 
+        <div class="hr-10"></div>
+
+        <a href="{{ route('email.test') }}" class="btn btn-xlg btn-primary">
+            <i class="ace-icon fa fa-mail-forward"></i> Enviar email
+        </a>
+
     </div>
 @endsection
 

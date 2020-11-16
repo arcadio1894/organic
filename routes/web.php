@@ -88,6 +88,10 @@ Route::middleware('auth')->group(function () {
     Route::get('export/department/excel', 'ExportController@exportDepartmentsExcel')->name('export.department.excel')
         ->middleware('permission:listar_departamento');
 
+    // TODO: Rutas de envio de emails
+    Route::get('mail/sendEmail', 'MailController@sendEmail')->name('email.test')
+        ->middleware('permission:listar_departamento');
+
 });
 
 /** Rutas de la tienda  */
