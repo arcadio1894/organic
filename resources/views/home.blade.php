@@ -21,8 +21,10 @@
 
 @section('content')
 <!-- Categories Section Begin -->
-
-<div class="col-lg-12">
+<section class="product-details spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
     <section class="product spad">
         <div class="container">
             <div class="row">
@@ -359,6 +361,9 @@
         </div>
     </section>
 </div>
+        </div>
+    </div>
+</section>
 <!-- Categories Section End -->
 @endsection
 

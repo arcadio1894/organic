@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="{{ asset('organic/css/owl.carousel.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('organic/css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('organic/css/style.css') }}" type="text/css">
-
+    <link rel="stylesheet" href="{{ asset('toast/jquery.toast.min.css') }}">
     @yield('styles')
 </head>
 
@@ -64,8 +64,10 @@
             <li class="@yield('activeInicio')"><a href="{{ url('/') }}">Inicio</a></li>
             {{--<li><a href="{{ route('tienda.categories') }}">Departamentos</a></li>--}}
             <li class="@yield('activeTienda')"><a href="{{ route('tienda.organic') }}">Tienda</a></li>
-            <li class="@yield('activePedidos')"><a href="#">Pedidos</a></li>
-            <li class="@yield('activeContacto')"><a href="#">Contacto</a></li>
+            @auth()
+                <li class="@yield('activePedidos')"><a href="#">Pedidos</a></li>
+            @endguest
+            <li class="@yield('activeContacto')"><a href="{{ route('contact') }}">Contacto</a></li>
         </ul>
     </nav>
     <div id="mobile-menu-wrap"></div>
@@ -159,8 +161,10 @@
                         <li class="@yield('activeInicio')"><a href="{{ url('/') }}">Inicio</a></li>
                         {{--<li><a href="{{ route('tienda.categories') }}">Departamentos</a></li>--}}
                         <li class="@yield('activeTienda')"><a href="{{ route('tienda.organic') }}">Tienda</a></li>
-                        <li class="@yield('activePedidos')"><a href="#">Pedidos</a></li>
-                        <li class="@yield('activeContacto')"><a href="#">Contacto</a></li>
+                        @auth()
+                            <li class="@yield('activePedidos')"><a href="#">Pedidos</a></li>
+                        @endauth
+                        <li class="@yield('activeContacto')"><a href="{{ route('contact') }}">Contacto</a></li>
                     </ul>
                 </nav>
             </div>
@@ -232,13 +236,14 @@
 @yield('breadcrumb')
 
 <!-- Breadcrumb Section End -->
+@yield('content')
 
 <!-- Product Details Section Begin -->
 <section class="product-details spad">
     <div class="container">
         <div class="row">
             <!-- Start Content Begin -->
-            @yield('content')
+
             <!-- Start Content End -->
         </div>
     </div>
@@ -322,6 +327,7 @@
 <script src="{{ asset('organic/js/jquery.slicknav.js') }}"></script>
 <script src="{{ asset('organic/js/mixitup.min.js') }}"></script>
 <script src="{{ asset('organic/js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('toast/jquery.toast.min.js') }}"></script>
 @yield('scripts')
 <script src="{{ asset('organic/js/main.js') }}"></script>
 

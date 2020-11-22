@@ -37,6 +37,10 @@ class SendEmailTest extends Mailable
         return $this->from('info@organic.com')
             ->view('emails.test')
             ->subject('Correo de contacto')
+            ->attach(public_path().'/exports/users.xlsx', [
+                'as' => 'users.xlsx',
+                'mime' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            ])
             ->with([
                 'user' => $this->user,
                 'customer' => $this->customer,

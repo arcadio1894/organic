@@ -116,6 +116,10 @@ Route::get('auth/{provider}/callback', 'Auth\SocialAuthController@handleProvider
 Route::get('405', 'HandlerController@error405')->name('405');
 Route::get('403', 'HandlerController@error403')->name('403');*/
 
+/** Rutas de contacto*/
+Route::get('contacto', 'StoreController@contact')->name('contact');
+Route::post('contact/send', 'StoreController@contactSend')->name('contact.send');
+
 
 
 

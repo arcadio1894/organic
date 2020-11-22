@@ -70,7 +70,7 @@
                 </ul>
             </li>
             <li><a href="./blog.html">Blog</a></li>
-            <li><a href="./contact.html">Contact</a></li>
+            <li class="@yield('activeContacto')"><a href="{{ route('contact') }}">Contact</a></li>
         </ul>
     </nav>
     <div id="mobile-menu-wrap"></div>
@@ -168,7 +168,7 @@
                         @auth()
                             <li><a href="#">Pedidos</a></li>
                         @endauth
-                        <li><a href="#">Contacto</a></li>
+                        <li class="@yield('activeContacto')"><a href="{{ route('contact') }}">Contacto</a></li>
                     </ul>
                 </nav>
             </div>
