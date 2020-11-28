@@ -63,10 +63,10 @@ function renderTemplateItem(image, id, name, unitPrice) {
     var url = document.location.origin;
     var url_image = url + '/images/products/'+image;
     clone.querySelector("[data-setbg]").setAttribute('data-setbg', url_image) ;
-    clone.querySelector("[data-heart]").setAttribute('href', url+'/product/heart/'+id);
-    clone.querySelector("[data-cart]").setAttribute('href', url+'/product/cart/'+id);
+    clone.querySelector("[data-heart]").setAttribute('href', url+'/producto/heart/'+id);
+    clone.querySelector("[data-cart]").setAttribute('href', url+'/producto/cart/'+id);
     clone.querySelector("[data-name]").innerHTML = name;
-    clone.querySelector("[data-name]").setAttribute('href', url+'/product/detail/'+id);
+    clone.querySelector("[data-name]").setAttribute('href', url+'/producto/detalle/'+id);
     clone.querySelector("[data-price]").innerHTML = unitPrice;
 
     $('#body-items').append(clone);

@@ -9,8 +9,7 @@
                         <h2>Iniciar Sesión</h2>
                         <div class="breadcrumb__option">
                             <a href="./index.html">Inicio</a>
-                            <a href="./index.html">Login</a>
-                            <span>Vegetable’s Package</span>
+                            <span>Login</span>
                         </div>
                     </div>
                 </div>
@@ -23,104 +22,86 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+            <div class="spad">
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+                    <div class="form-group row">
+                        <label for="dni" class="col-md-4 col-form-label text-md-right">{{ __('Dni') }}</label>
 
-                        <div class="form-group row">
-                            <label for="dni" class="col-md-4 col-form-label text-md-right">{{ __('Dni') }}</label>
+                        <div class="col-md-6">
+                            <input id="dni" type="text" class="form-control @error('dni') is-invalid @enderror" name="dni" value="{{ old('dni') }}" required autocomplete="dni" autofocus>
 
-                            <div class="col-md-6">
-                                <input id="dni" type="text" class="form-control @error('dni') is-invalid @enderror" name="dni" value="{{ old('dni') }}" required autocomplete="dni" autofocus>
+                            @error('dni')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
 
-                                @error('dni')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                    <div class="form-group row">
+                        <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                        <div class="col-md-6">
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-6 offset-md-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                                <label class="form-check-label" for="remember">
+                                    {{ __('Remember Me') }}
+                                </label>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                    <div class="form-group row mb-0">
+                        <div class="col-md-8 offset-md-4">
+                            <button type="submit" class="btn btn-primary">
+                                {{ __('Login') }}
+                            </button>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <a href="{{ route('social.auth', 'github') }}" class="btn btn-success">
-                                    <i class="fa fa-github"></i> {{ __('GitHub') }}
+                            @if (Route::has('password.request'))
+                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    {{ __('Forgot Your Password?') }}
                                 </a>
-                            </div>
+                            @endif
                         </div>
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <a href="{{ route('social.auth', 'google') }}" class="btn btn-danger">
-                                    <i class="fa fa-google"></i> {{ __('Google') }}
-                                </a>
-                            </div>
+                    </div>
+                    <div class="form-group row mb-0">
+                        <div class="col-md-8 offset-md-3 mt-2">
+
+                            <a href="{{ route('social.auth', 'github') }}" class="btn btn-success">
+                                <i class="fa fa-github"></i> {{ __('GitHub') }}
+                            </a>
+                            <a href="{{ route('social.auth', 'google') }}" class="btn btn-danger">
+                                <i class="fa fa-google"></i> {{ __('Google') }}
+                            </a>
+                            <a href="{{ route('social.auth', 'linkedin') }}" class="btn btn-info">
+                                <i class="fa fa-linkedin"></i> {{ __('Linkedin') }}
+                            </a>
+                            <a href="{{ route('social.auth', 'facebook') }}" class="btn btn-primary">
+                                <i class="fa fa-facebook"></i> {{ __('Facebook') }}
+                            </a>
+                            <a href="{{ route('social.auth', 'twitter') }}" class="btn btn-secondary">
+                                <i class="fa fa-twitter"></i> {{ __('Twitter') }}
+                            </a>
                         </div>
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <a href="{{ route('social.auth', 'linkedin') }}" class="btn btn-info">
-                                    <i class="fa fa-linkedin"></i> {{ __('Linkedin') }}
-                                </a>
-                            </div>
-                        </div>
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <a href="{{ route('social.auth', 'facebook') }}" class="btn btn-primary">
-                                    <i class="fa fa-facebook"></i> {{ __('Facebook') }}
-                                </a>
-                            </div>
-                        </div>
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <a href="{{ route('social.auth', 'twitter') }}" class="btn btn-secondary">
-                                    <i class="fa fa-twitter"></i> {{ __('Twitter') }}
-                                </a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
+
         </div>
     </div>
 </div>

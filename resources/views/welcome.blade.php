@@ -54,23 +54,18 @@
         </div>
         <div class="header__top__right__auth">
             <a href="{{ route('login') }}"><i class="fa fa-user"></i> Login</a>
-            <a href="{{ route('register') }}"><i class="fa fa-user"></i> Register</a>
+            <a href="{{ route('register') }}"><i class="fa fa-plus"></i> Registro</a>
         </div>
     </div>
     <nav class="humberger__menu__nav mobile-menu">
         <ul>
-            <li class="active"><a href="./index.html">Home</a></li>
-            <li><a href="{{ route('tienda.categories') }}">Departamentos</a></li>
-            <li><a href="#">Pages</a>
-                <ul class="header__menu__dropdown">
-                    <li><a href="./shop-details.html">Shop Details</a></li>
-                    <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                    <li><a href="./checkout.html">Check Out</a></li>
-                    <li><a href="./blog-details.html">Blog Details</a></li>
-                </ul>
-            </li>
-            <li><a href="./blog.html">Blog</a></li>
-            <li class="@yield('activeContacto')"><a href="{{ route('contact') }}">Contact</a></li>
+            <li class="@yield('activeInicio')"><a href="{{ url('/') }}">Inicio</a></li>
+            {{--<li><a href="{{ route('tienda.categories') }}">Departamentos</a></li>--}}
+            <li class="@yield('activeTienda')"><a href="{{ route('tienda.organic') }}">Tienda</a></li>
+            @auth()
+                <li class="@yield('activePedidos')"><a href="#">Pedidos</a></li>
+            @endguest
+            <li class="@yield('activeContacto')"><a href="{{ route('contact') }}">Contacto</a></li>
         </ul>
     </nav>
     <div id="mobile-menu-wrap"></div>
@@ -82,8 +77,8 @@
     </div>
     <div class="humberger__menu__contact">
         <ul>
-            <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-            <li>Free Shipping for all Order of $99</li>
+            <li><i class="fa fa-envelope"></i> info@organic.com</li>
+            <li>Envío gratis para todos los pedidos de $99</li>
         </ul>
     </div>
 </div>
@@ -97,8 +92,8 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="header__top__left">
                         <ul>
-                            <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                            <li>Free Shipping for all Order of $99</li>
+                            <li><i class="fa fa-envelope"></i> info@organic.com</li>
+                            <li>Envío gratis para todos los pedidos de $99</li>
                         </ul>
                     </div>
                 </div>
@@ -112,7 +107,7 @@
                         </div>
                         @guest
                             <div class="header__top__right__auth">
-                                <a href="{{ route('register') }}"><i class="fa fa-user"></i> Register</a>
+                                <a href="{{ route('register') }}"><i class="fa fa-plus"></i> Registro</a>
                             </div>
                             &nbsp;
                             &nbsp;
@@ -217,7 +212,7 @@
                                 <span class="arrow_carrot-down"></span>
                             </div>
                             <input type="text" placeholder="What do yo u need?">
-                            <button type="submit" class="site-btn">SEARCH</button>
+                            <button type="submit" class="site-btn">BUSCAR</button>
                         </form>
                     </div>
                     <div class="hero__search__phone">
@@ -225,8 +220,8 @@
                             <i class="fa fa-phone"></i>
                         </div>
                         <div class="hero__search__phone__text">
-                            <h5>+65 11.188.888</h5>
-                            <span>support 24/7 time</span>
+                            <h5>+51 968547854</h5>
+                            <span>Soporte 24/7</span>
                         </div>
                     </div>
                 </div>

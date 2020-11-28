@@ -7,7 +7,7 @@
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Organic Cuenta</title>
+    <title>Organic Shop</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
@@ -40,7 +40,7 @@
     <div class="humberger__menu__cart">
         <ul>
             <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+            <li><a href="{{ route('shop.cart') }}"><i class="fa fa-shopping-basket"></i> <span>3</span></a></li>
         </ul>
         <div class="header__cart__price">item: <span>$150.00</span></div>
     </div>
@@ -56,7 +56,7 @@
         </div>
         <div class="header__top__right__auth">
             <a href="{{ route('login') }}"><i class="fa fa-user"></i> Login</a>
-            <a href="{{ route('register') }}"><i class="fa fa-user"></i> Register</a>
+            <a href="{{ route('register') }}"><i class="fa fa-user"></i> Registro</a>
         </div>
     </div>
     <nav class="humberger__menu__nav mobile-menu">
@@ -79,8 +79,8 @@
     </div>
     <div class="humberger__menu__contact">
         <ul>
-            <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-            <li>Free Shipping for all Order of $99</li>
+            <li><i class="fa fa-envelope"></i> info@organic.com</li>
+            <li>Envío gratis para todos los pedidos de $99</li>
         </ul>
     </div>
 </div>
@@ -94,8 +94,8 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="header__top__left">
                         <ul>
-                            <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                            <li>Free Shipping for all Order of $99</li>
+                            <li><i class="fa fa-envelope"></i> info@organic.com</li>
+                            <li>Envío gratis para todos los pedidos de $99</li>
                         </ul>
                     </div>
                 </div>
@@ -109,7 +109,7 @@
                         </div>
                         @guest
                             <div class="header__top__right__auth">
-                                <a href="{{ route('register') }}"><i class="fa fa-plus"></i> Register</a>
+                                <a href="{{ route('register') }}"><i class="fa fa-plus"></i> Registro</a>
                             </div>
                             &nbsp;
                             &nbsp;
@@ -173,7 +173,7 @@
                     <div class="header__cart">
                         <ul>
                             <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            <li><a href="{{ route('shop.cart') }}"><i class="fa fa-shopping-basket"></i> <span>3</span></a></li>
                         </ul>
                         <div class="header__cart__price">item: <span>$150.00</span></div>
                     </div>
@@ -213,7 +213,7 @@
                                 <span class="arrow_carrot-down"></span>
                             </div>
                             <input type="text" placeholder="What do yo u need?">
-                            <button type="submit" class="site-btn">SEARCH</button>
+                            <button type="submit" class="site-btn">BUSCAR</button>
                         </form>
                     </div>
                     <div class="hero__search__phone">
@@ -221,8 +221,8 @@
                             <i class="fa fa-phone"></i>
                         </div>
                         <div class="hero__search__phone__text">
-                            <h5>+65 11.188.888</h5>
-                            <span>support 24/7 time</span>
+                            <h5>+51 968547854</h5>
+                            <span>Soporte 24/7</span>
                         </div>
                     </div>
                 </div>
@@ -331,7 +331,7 @@
 @yield('scripts')
 <script src="{{ asset('organic/js/main.js') }}"></script>
 
-
+<script src="{{ asset('js/principal.js') }}"></script>
 
 </body>
 

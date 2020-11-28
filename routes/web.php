@@ -92,6 +92,7 @@ Route::middleware('auth')->group(function () {
     Route::get('mail/sendEmail', 'MailController@sendEmail')->name('email.test')
         ->middleware('permission:listar_departamento');
 
+    Route::get('tienda/cart', 'StoreController@cart')->name('shop.cart');
 });
 
 /** Rutas de la tienda  */
@@ -111,17 +112,23 @@ Route::get('auth/{provider}', 'Auth\SocialAuthController@redirectToProvider')
     ->name('social.auth');
 Route::get('auth/{provider}/callback', 'Auth\SocialAuthController@handleProviderCallback');
 
-/** Rutas de HandlerController*/
+/** Rutas de HandlerController */
 /*Route::get('404', 'HandlerController@error404')->name('404');
 Route::get('405', 'HandlerController@error405')->name('405');
 Route::get('403', 'HandlerController@error403')->name('403');*/
 
-/** Rutas de contacto*/
+/** Rutas de contacto */
 Route::get('contacto', 'StoreController@contact')->name('contact');
 Route::post('contact/send', 'StoreController@contactSend')->name('contact.send');
 
+/** Rutas de eventos */
+Route::get('evento', 'StoreController@testEvent');
 
-
+/** Rutas de shop */
+Route::get('tienda', 'StoreController@shop')->name('tienda.organic');
+Route::get('producto/detalle/{id}', 'StoreController@productDetail');
+Route::get('producto/heart/{id}', 'StoreController@productHeart');
+Route::get('producto/cart/{id}', 'StoreController@productCart');
 
 // TODO: Ruta simple
 Route::get('/hola', function () {

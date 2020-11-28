@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Customer;
+use App\Department;
+use App\Events\UserRegistered;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
@@ -33,6 +35,10 @@ class SocialAuthController extends Controller
                 'phone' => '985487451',
                 'user_id' => $user->id,
             ]);
+
+            // TODO: Generamos el evento UserRegistered para el envio de correos
+            $departments = Department::all();
+            event(new UserRegistered($user, $departments));
             return $this->authAndRedirect($user);
         }
     }

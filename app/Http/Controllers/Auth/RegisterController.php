@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Address;
 use App\Customer;
 use App\Department;
+use App\Events\UserRegistered;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
@@ -95,6 +96,10 @@ class RegisterController extends Controller
             'country' => $data['country'],
             'customer_id' => $customer->id,
         ]);
+
+        // TODO: Generamos el evento UserRegistered para el envio de correos
+        $departments = Department::all();
+        event(new UserRegistered($user, $departments));
 
         return $user;
     }
