@@ -62,7 +62,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="#" class="primary-btn">AGREGAR AL CARRITO</a>
+                    <a href="" data-add data-product="{{ $product->id }}" data-url="{{ route('add.cart') }}" class="primary-btn">AGREGAR AL CARRITO</a>
                     <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                     <ul>
                         <li><b>Availability</b> <span>{{ $product->unitsInStock }} unidades en stock</span></li>
@@ -136,5 +136,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('js/shop/shop-grid.js') }}"></script>
+    <script src="{{ asset('js/shop/addCart.js') }}"></script>
 @endsection

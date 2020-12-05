@@ -92,7 +92,11 @@ Route::middleware('auth')->group(function () {
     Route::get('mail/sendEmail', 'MailController@sendEmail')->name('email.test')
         ->middleware('permission:listar_departamento');
 
-    Route::get('tienda/cart', 'StoreController@cart')->name('shop.cart');
+    Route::get('add/cart/', 'StoreController@cart')->name('add.cart');
+    Route::get('shopping/cart/', 'StoreController@shoppingCart')->name('shopping.cart');
+    Route::get('delete/detail/', 'StoreController@deleteDetail')->name('delete.detail');
+    Route::get('modify/quantity/', 'StoreController@modifyQuantity')->name('modify.quantity');
+
 });
 
 /** Rutas de la tienda  */

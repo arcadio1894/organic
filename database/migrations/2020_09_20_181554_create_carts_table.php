@@ -15,7 +15,8 @@ class CreateCartsTable extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->enum('state', ['on', 'off']);
+            $table->enum('active', ['on', 'off']);
+            $table->enum('state', ['Updating', 'InProcess', 'Sent', 'Completed']);
             $table->unsignedBigInteger('customer_id');
             $table->foreign('customer_id')
                 ->references('id')->on('customers');

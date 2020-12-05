@@ -28,7 +28,7 @@ class Product extends Model
     // TODO: Ejemplo de relacion de muchos a muchos
     public function carts()
     {
-        return $this->belongsToMany('App\Cart', 'cart_products')->withPivot('cart_id');
+        return $this->belongsToMany('App\Cart', 'cart_products')->withPivot('cart_id', 'quantity', 'price');
     }
 
 }

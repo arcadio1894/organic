@@ -10,7 +10,7 @@ class Cart extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'active', 'customer_id',
+        'active', 'customer_id', 'state',
     ];
 
     protected $dates = ['deleted_at'];
@@ -23,6 +23,7 @@ class Cart extends Model
     // TODO: Ejemplo de relacion de muchos a muchos
     public function products()
     {
-        return $this->belongsToMany('App\Product', 'cart_products')->withPivot('product_id');
+        return $this->belongsToMany('App\Product', 'cart_products')->withPivot('product_id', 'quantity', 'price');
     }
+
 }
