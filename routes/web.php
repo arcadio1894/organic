@@ -97,6 +97,7 @@ Route::middleware('auth')->group(function () {
     Route::get('delete/detail/', 'StoreController@deleteDetail')->name('delete.detail');
     Route::get('modify/quantity/', 'StoreController@modifyQuantity')->name('modify.quantity');
 
+    
 });
 
 /** Rutas de la tienda  */
@@ -133,6 +134,15 @@ Route::get('tienda', 'StoreController@shop')->name('tienda.organic');
 Route::get('producto/detalle/{id}', 'StoreController@productDetail');
 Route::get('producto/heart/{id}', 'StoreController@productHeart');
 Route::get('producto/cart/{id}', 'StoreController@productCart');
+
+/** Rutas de prueba de broadcasting */
+Route::get('/sendNotification', function () {
+    $mensaje =  'Por fin enviamos una notificación.';
+    event(new \App\Events\OrderPlaced($mensaje));
+});
+Route::get('/listenNotification', function () {
+    return view('listEvent');
+});
 
 // TODO: Ruta simple
 Route::get('/hola', function () {

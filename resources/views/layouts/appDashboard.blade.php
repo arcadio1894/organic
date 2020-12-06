@@ -259,7 +259,7 @@
 
             <div class="page-content">
                 <div class="row">
-                    <div class="col-xs-12">
+                    <div id="app" class="col-xs-12">
                         <!-- PAGE CONTENT BEGINS -->
                     @yield('content')
                     <!-- PAGE CONTENT ENDS -->
@@ -322,6 +322,7 @@
 <script src="{{ asset('toast/jquery.toast.min.js') }}"></script>
 
 <!-- inline scripts related to this page -->
+<script src="{{ asset('js/app.js') }}"></script>
 @yield('scripts')
 </body>
 </html>

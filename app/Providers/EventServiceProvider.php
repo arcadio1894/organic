@@ -26,10 +26,10 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\SendEmailUser',
         ],
         'App\Events\OrderShipped' => [
-            'App\Listeners\SendEmailOrderShipped',
+            'App\Listeners\OrderStatusShipped',
         ],
         'App\Events\OrderPlaced' => [
-            'App\Listeners\SendEmailOrderShipped',
+            'App\Listeners\OrderStatusPlaced',
         ],
     ];
 
