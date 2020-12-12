@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Customer;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -14,15 +15,17 @@ class OrderPlaced implements shouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $mensaje;
+    public $customer;
+    public $total;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct( $mensaje )
+    public function __construct( Customer $customer, $total )
     {
-        $this->mensaje = $mensaje;
+        $this->customer = $customer;
+        $this->total = $total;
     }
 
     /**

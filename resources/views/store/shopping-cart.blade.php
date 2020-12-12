@@ -89,7 +89,7 @@
                         <li>Delivery <span>S/. 10.00 </span></li>
                         <li>Total <span>S/. {{ number_format($total+10, 2) }}</span></li>
                     </ul>
-                    <a href="#" class="primary-btn">PASAR POR LA CAJA</a>
+                    <a href="{{ route('shop.checkout', $cart->id) }}" class="primary-btn">PASAR POR LA CAJA</a>
                 </div>
             </div>
         </div>

@@ -97,7 +97,10 @@ Route::middleware('auth')->group(function () {
     Route::get('delete/detail/', 'StoreController@deleteDetail')->name('delete.detail');
     Route::get('modify/quantity/', 'StoreController@modifyQuantity')->name('modify.quantity');
 
-    
+    Route::get('checkout/{id}/', 'StoreController@checkout')->name('shop.checkout');
+    Route::post('place/order/', 'StoreController@placeOrder')->name('place.order');
+    Route::get('pedidos/', 'StoreController@orders')->name('shop.orders');
+
 });
 
 /** Rutas de la tienda  */

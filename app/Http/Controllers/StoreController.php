@@ -6,6 +6,7 @@ use App\Cart;
 use App\CartProduct;
 use App\Customer;
 use App\Department;
+use App\Events\OrderPlaced;
 use App\Events\TestEvent;
 use App\Mail\ContactEmail;
 use App\Product;
@@ -158,6 +159,46 @@ class StoreController extends Controller
         return view('store.shopping-cart', compact('departments', 'cart', 'total'));
     }
 
+    public function checkout($id){
+        $departments = Department::all();
+        $cart = Cart::where('id', $id)->with('customer','products')->first();
+        $subtotal = 0;
+        foreach ( $cart->products as $detail)
+        {
+            $subtotal+=($detail->pivot->price*$detail->pivot->quantity);
+        }
+        $total = $subtotal+10;
+        return view('store.checkout', compact('cart', 'subtotal', 'total', 'departments'));
+
+    }
+
+    public function placeOrder( Request $request ){
+        // TODO: Cambiar el estado del carrito
+        $cart = Cart::find($request->get('cart'));
+        $cart->active = 'off';
+        $cart->state = 'InProcess';
+        $cart->save();
+        $customer = Customer::find($cart->customer_id);
+        $subtotal = 0;
+        foreach ( $cart->products as $detail)
+        {
+            $subtotal+=($detail->pivot->price*$detail->pivot->quantity);
+        }
+        $total = number_format($subtotal+10, 2);
+        // En un caso mas real se podria guardar en un tabla
+        // llamada orders (pedidos) junto con los datos de pago
+        //
+        // TODO: Enviar la notificacion
+        event(new OrderPlaced($customer, $total));
+        return response()->json(['url'=> route('shop.orders')],200);
+
+    }
+
+    public function orders(){
+        dd('Aqui estaran las ordenes');
+
+    }
+
     public function getProducts()
     {
         $products = Product::with('department')->get();
@@ -187,4 +228,6 @@ class StoreController extends Controller
         event( new TestEvent('Jorge Gonzales'));
         return 'Se ha realizado todo correctamente.';
     }
+
+
 }

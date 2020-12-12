@@ -323,6 +323,27 @@
 
 <!-- inline scripts related to this page -->
 <script src="{{ asset('js/app.js') }}"></script>
+<script>
+    Echo.private('order-placed')
+        .listen('OrderPlaced', (e) => {
+            var mensaje = 'El cliente '+e.customer.name+' ha realizado un pedido por S/. '+e.total;
+            //alert(mensaje);
+            $.toast({
+                text : mensaje,
+                showHideTransition : 'slide',
+                bgColor : '#629B58',
+                textColor : '#eee',
+                allowToastClose : false,
+                hideAfter : 4000,
+                stack : 10,
+                textAlign : 'left',
+                position : 'top-right',
+                icon: 'success',
+                heading: 'Nuevo pedido'
+            });
+        });
+</script>
 @yield('scripts')
+
 </body>
 </html>

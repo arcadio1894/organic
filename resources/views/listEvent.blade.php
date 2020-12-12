@@ -34,7 +34,7 @@
     <script>
         Echo.private('order-placed')
             .listen('OrderPlaced', (e) => {
-                alert(e.mensaje);
+                //alert(e.mensaje);
             });
     </script>
     {{--<script src="{{ asset('js/product/index.js') }}"></script>--}}
