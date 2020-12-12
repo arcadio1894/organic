@@ -25,6 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Department::observe(DepartmentObserver::class);
+        //Department::observe(DepartmentObserver::class);
     }
 }
