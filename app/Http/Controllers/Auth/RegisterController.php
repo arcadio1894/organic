@@ -98,8 +98,8 @@ class RegisterController extends Controller
         ]);
 
         // TODO: Generamos el evento UserRegistered para el envio de correos
-        $departments = Department::all();
-        event(new UserRegistered($user, $departments));
+        //$departments = Department::all();
+        //event(new UserRegistered($user, $departments));
 
         return $user;
     }

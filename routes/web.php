@@ -151,6 +151,10 @@ Route::get('/listenNotification', function () {
     return view('listEvent');
 });
 
+/** Rutas de EagerLoading y LazyLoading */
+Route::get('eagerLoading', 'StoreController@eagerLoading');
+Route::get('lazyLoading', 'StoreController@lazyLoading');
+
 // TODO: Ruta simple
 Route::get('/hola', function () {
     return 'Hola Mundo';

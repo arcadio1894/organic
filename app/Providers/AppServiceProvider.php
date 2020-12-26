@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //Department::observe(DepartmentObserver::class);
 
-        if (env('APP_ENV') !== 'production') {
+        if (env('APP_ENV') !== 'local') {
             URL::forceScheme('https');
         }
     }

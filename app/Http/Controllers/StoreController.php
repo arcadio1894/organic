@@ -229,5 +229,20 @@ class StoreController extends Controller
         return 'Se ha realizado todo correctamente.';
     }
 
+    public function eagerLoading()
+    {
+        // Usar las relaciones si y solo si son necesarias
+        $products = Product::with('department')->get();
+        //$products = Product::with('department')->get();
+        return view('dashboard.eager', compact('products'));
+    }
+
+    public function lazyLoading()
+    {
+        // Enviar toda la informacion sin relaciones si no las vamos a necesitar
+        $products = Product::all();
+        return view('dashboard.lazy', compact('products'));
+    }
+
 
 }
