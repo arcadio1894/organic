@@ -105,6 +105,11 @@ Route::middleware('auth')->group(function () {
     Route::post('place/order/', 'StoreController@placeOrder')->name('place.order');
     Route::get('pedidos/', 'StoreController@orders')->name('shop.orders');
 
+    // TODO: Rutas del vue.js
+    Route::get('/posts/{product_id}', 'PostController@index');
+    Route::post('/post', 'PostController@store');
+    Route::put('/post/{id}', 'PostController@update');
+    Route::delete('/post/{id}', 'PostController@destroy');
 });
 
 /** Rutas de la tienda  */

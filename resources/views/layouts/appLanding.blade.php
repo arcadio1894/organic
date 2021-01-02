@@ -237,7 +237,9 @@
 @yield('breadcrumb')
 
 <!-- Breadcrumb Section End -->
-@yield('content')
+<div id="app">
+    @yield('content')
+</div>
 
 <!-- Product Details Section Begin -->
 <section class="product-details spad">
@@ -329,10 +331,8 @@
 <script src="{{ asset('organic/js/mixitup.min.js') }}"></script>
 <script src="{{ asset('organic/js/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('toast/jquery.toast.min.js') }}"></script>
-@yield('scripts')
 <script src="{{ asset('organic/js/main.js') }}"></script>
-
-{{--<script src="{{ asset('js/principal.js') }}"></script>--}}
+@yield('scripts')
 
 </body>
 
