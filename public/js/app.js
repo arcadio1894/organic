@@ -1961,6 +1961,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['comment'],
   data: function data() {
@@ -2013,6 +2014,11 @@ __webpack_require__.r(__webpack_exports__);
       axios["delete"]('/post/' + this.comment.id).then(function () {
         _this2.$emit('delete');
       });
+    },
+
+    /* Estos metodos son del modal */
+    onClickModal: function onClickModal() {
+      this.$emit('openModal', this.comment);
     }
   }
 });
@@ -2098,11 +2104,46 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['product_id'],
   data: function data() {
     return {
-      comments: []
+      comments: [],
+
+      /* Estos datos son de ejemplo*/
+      openModal: false,
+      productEdit: '',
+      descriptionEdit: '',
+      priceEdit: '',
+      productId: ''
     };
   },
   mounted: function mounted() {
@@ -2124,6 +2165,24 @@ __webpack_require__.r(__webpack_exports__);
     updateComment: function updateComment(index, comment) {
       this.comments[index] = comment;
       console.log(this.comments[index].comment);
+    },
+
+    /* Estos metodos son referidos a un ejemplo con modal */
+    onClickCancel: function onClickCancel() {
+      this.openModal = false;
+      this.productEdit = '';
+      this.descriptionEdit = '';
+      this.priceEdit = '';
+      this.productId = "";
+      $('#modalEditar').hide();
+    },
+    openedModal: function openedModal(index, comment) {
+      this.openModal = true;
+      this.productEdit = comment.comment;
+      this.descriptionEdit = comment.comment;
+      this.priceEdit = comment.comment;
+      this.productId = comment.id;
+      $('#modalEditar').show();
     }
   }
 });
@@ -47566,6 +47625,18 @@ var render = function() {
                         _c(
                           "button",
                           {
+                            staticClass: "btn btn-primary btn-sm",
+                            on: { click: _vm.onClickModal }
+                          },
+                          [
+                            _c("i", { staticClass: "fa fa-envelope-open" }),
+                            _vm._v(" Abrir modal")
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
                             staticClass: "btn btn-success btn-sm",
                             on: { click: _vm.onClickEdit }
                           },
@@ -47736,10 +47807,162 @@ var render = function() {
                 argsArray = Array(i)
               while (i--) argsArray[i] = arguments[i]
               return _vm.updateComment.apply(void 0, [index].concat(argsArray))
+            },
+            openModal: function($event) {
+              var i = arguments.length,
+                argsArray = Array(i)
+              while (i--) argsArray[i] = arguments[i]
+              return _vm.openedModal.apply(void 0, [index].concat(argsArray))
             }
           }
         })
-      })
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "modal", attrs: { id: "modalEditar", tabindex: "-1" } },
+        [
+          _c("div", { staticClass: "modal-dialog" }, [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c("h5", { staticClass: "modal-title" }, [
+                  _vm._v("Modal title")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "close",
+                    attrs: {
+                      type: "button",
+                      "data-dismiss": "modal",
+                      "aria-label": "Close"
+                    },
+                    on: { click: _vm.onClickCancel }
+                  },
+                  [
+                    _c("span", { attrs: { "aria-hidden": "true" } }, [
+                      _vm._v("×")
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.productId,
+                      expression: "productId"
+                    }
+                  ],
+                  attrs: { type: "hidden" },
+                  domProps: { value: _vm.productId },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.productId = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.productEdit,
+                      expression: "productEdit"
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.productEdit },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.productEdit = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.descriptionEdit,
+                      expression: "descriptionEdit"
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.descriptionEdit },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.descriptionEdit = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.priceEdit,
+                      expression: "priceEdit"
+                    }
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.priceEdit },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.priceEdit = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    attrs: { type: "button" },
+                    on: { click: _vm.onClickCancel }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        Cerrar\n                    "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  { staticClass: "btn btn-primary", attrs: { type: "button" } },
+                  [
+                    _vm._v(
+                      "\n                        Guardar cambios\n                    "
+                    )
+                  ]
+                )
+              ])
+            ])
+          ])
+        ]
+      )
     ],
     2
   )

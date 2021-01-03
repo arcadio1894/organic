@@ -37,6 +37,7 @@
                                     </p>
 
                                     <p v-else class="text-right">
+                                        <button v-on:click="onClickModal" class="btn btn-primary btn-sm"><i class="fa fa-envelope-open"></i> Abrir modal</button>
                                         <button v-on:click="onClickEdit" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i> Editar</button>
                                         <button v-on:click="onClickDelete" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Eliminar</button>
                                     </p>
@@ -107,6 +108,10 @@
                             this.$emit('delete');
                         }
                     )
+            },
+            /* Estos metodos son del modal */
+            onClickModal() {
+                this.$emit('openModal', this.comment);
             }
         }
     }

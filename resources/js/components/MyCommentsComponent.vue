@@ -6,8 +6,36 @@
             v-bind:key="comment.id"
             v-bind:comment="comment"
             v-on:delete="deleteComment(index)"
-            v-on:update="updateComment(index, ...arguments)">
+            v-on:update="updateComment(index, ...arguments)"
+            v-on:openModal="openedModal(index, ...arguments)">
         </comment-component>
+        <div id="modalEditar" class="modal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal"
+                            v-on:click="onClickCancel" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" v-model="productId">
+                        <input type="text" v-model="productEdit">
+                        <input type="text" v-model="descriptionEdit">
+                        <input type="text" v-model="priceEdit">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" v-on:click="onClickCancel">
+                            Cerrar
+                        </button>
+                        <button type="button" class="btn btn-primary" >
+                            Guardar cambios
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -16,7 +44,13 @@
         props: ['product_id'],
         data() {
             return {
-                comments: []
+                comments: [],
+                /* Estos datos son de ejemplo*/
+                openModal: false,
+                productEdit: '',
+                descriptionEdit: '',
+                priceEdit: '',
+                productId: '',
             }
         },
         mounted() {
@@ -39,6 +73,24 @@
             updateComment(index, comment) {
                 this.comments[index] = comment;
                 console.log(this.comments[index].comment)
+            },
+
+            /* Estos metodos son referidos a un ejemplo con modal */
+            onClickCancel(){
+                this.openModal = false;
+                this.productEdit = '';
+                this.descriptionEdit = '';
+                this.priceEdit = '';
+                this.productId = "";
+                $('#modalEditar').hide();
+            },
+            openedModal(index, comment){
+                this.openModal = true;
+                this.productEdit = comment.comment;
+                this.descriptionEdit = comment.comment;
+                this.priceEdit = comment.comment;
+                this.productId = comment.id;
+                $('#modalEditar').show();
             }
         }
     }
